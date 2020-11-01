@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>Basic AJAX Demo</title>
+		<link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <div class="main">
+			<h2>Get The Latest Content:</h2>
+			<div class='content' id="content">
+				<input type="button" class="button" value="Get Content" id="btn_content" onclick="getContent();"/>
+            </div>
+            <br>
+            <h2>Get Even More of the Most Current Content Here:</h2>
+            <div class='content' id='content1'>
+                <input type="button" class="button" value="Get Content" id="btn_content1" onclick="getContent1();"/>
+            </div>
+        <script type="text/javascript">
+        //STEP 1: Setup the xml HTTP request object
+        var AJAX = new XMLHttpRequest();
+
+
+
+        //STEP 2: Prepare the open AJAX request
+        AJAX.open("GET", "content.html");
+
+
+
+        //STEP 3: Define the AJAX response callback method
+        AJAX.onreadystatechange = function()    {
+            if (AJAX.readyState == 4)    {
+                document.getElementById('content').innerHTML = AJAX.responseText;
+
+            }
+        }
+
+
+        //STEP 4: Send the AJAX request for data
+        function getContent()   {
+            AJAX.send();
+            document.getElementById("btn_content").style.display = "none";
+        }
+
+
+        var AJAX_2 = new XMLHttpRequest();
+        AJAX_2.open("GET", "content_1.html");
+        AJAX_2.onreadystatechange = function()  {
+            if (AJAX_2.readyState == 4) {
+                document.getElementById('content1').innerHTML = AJAX_2.responseText;
+            }
+
+        }
+        function getContent1()   {
+            AJAX_2.send();
+            document.getElementById('btn_content1').innerHTML = AJAX_2.responseText;
+        }
+            
+
+
+
+
+
+		</script>
+    </body>
+</html>
